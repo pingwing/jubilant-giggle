@@ -1,4 +1,4 @@
-// import { v7 as uuidv7 } from 'uuid';
+import { v7 as uuidv7 } from 'uuid';
 
 import { Injectable } from '@nestjs/common';
 import { Character } from '../graphql';
@@ -8,7 +8,7 @@ import { Character } from '../graphql';
 @Injectable()
 export class CharactersService {
   private readonly characters: Array<Character> = [
-    { id: 'test123', name: 'Cat' },
+    { id: '019645d4-8273-7758-92d7-f20f20d723be', name: 'Luke Skajłoker' },
   ];
 
   // create(createCharacterInput: CreateCharacterInput) {
@@ -21,7 +21,7 @@ export class CharactersService {
     return this.characters;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} character`;
   }
 

@@ -41,8 +41,6 @@ export interface IQuery {
 export interface Episode {
     id: string;
     name: string;
-    createdAt: string;
-    updatedAt: string;
 }
 
 export interface IMutation {
@@ -57,7 +55,13 @@ export interface IMutation {
 export interface Planet {
     id: string;
     name: string;
+}
+
+export interface CreatedMetadata {
     createdAt: string;
+}
+
+export interface UpdatedMetadata {
     updatedAt: string;
 }
 

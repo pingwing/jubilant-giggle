@@ -18,7 +18,7 @@ export class CharactersResolver {
   }
 
   @Query('character')
-  findOne(@Args('id') id: number) {
+  findOne(@Args('id') id: string) {
     return this.charactersService.findOne(id);
   }
 

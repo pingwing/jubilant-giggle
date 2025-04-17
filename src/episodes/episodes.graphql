@@ -1,0 +1,9 @@
+type Query {
+  episodes: [Episode]
+  episode(id: ID!): Episode
+}
+
+type Episode {
+  id: ID!
+  name: String!
+}

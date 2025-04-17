@@ -30,7 +30,14 @@ export class EpisodesService {
   }
 
   update(id: string, updateEpisodeInput: UpdateEpisodeInput) {
-    return `This action updates a #${id} episode`;
+    const episodeToUpdate = this.episodes.find((episode) => episode.id === id);
+
+    if (!episodeToUpdate) {
+      throw new Error(`Episode with id #${id} not found`);
+    }
+
+    episodeToUpdate.name = updateEpisodeInput.name;
+    return episodeToUpdate;
   }
 
   remove(id: string) {

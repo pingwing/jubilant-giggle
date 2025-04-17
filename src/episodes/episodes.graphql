@@ -11,6 +11,7 @@ input CreateEpisodeInput {
 
 input UpdateEpisodeInput {
   id: ID!
+  name: String!
 }
 
 type Query {

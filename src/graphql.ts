@@ -18,6 +18,7 @@ export class CreateEpisodeInput {
 
 export class UpdateEpisodeInput {
     id: string;
+    name: string;
 }
 
 export class CreatePlanetInput {

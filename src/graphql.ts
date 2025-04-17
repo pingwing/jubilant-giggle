@@ -20,18 +20,20 @@ export interface IQuery {
 export interface Character {
     id: string;
     name: string;
-    episodes?: Nullable<Nullable<Episode>[]>;
-    planet?: Nullable<Planet>;
 }
 
 export interface Episode {
     id: string;
     name: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface Planet {
     id: string;
     name: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 type Nullable<T> = T | null;

@@ -1,1 +1,3 @@
-export class CreatePlanetInput {}
+export class CreatePlanetInput {
+  name: string;
+}

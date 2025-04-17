@@ -18,8 +18,8 @@ export class PlanetsResolver {
   }
 
   @Query('planet')
-  findOne(@Args('id') id: number) {
-    return this.planetsService.findOne(id);
+  findOne(@Args('id') id: string) {
+    return this.planetsService.findOneById(id);
   }
 
   @Mutation('updatePlanet')
@@ -28,7 +28,7 @@ export class PlanetsResolver {
   }
 
   @Mutation('removePlanet')
-  remove(@Args('id') id: number) {
+  remove(@Args('id') id: string) {
     return this.planetsService.remove(id);
   }
 }

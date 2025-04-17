@@ -1,26 +1,52 @@
+import { v7 as uuidv7 } from 'uuid';
 import { Injectable } from '@nestjs/common';
+
 import { CreatePlanetInput } from './dto/create-planet.input';
 import { UpdatePlanetInput } from './dto/update-planet.input';
+import { Planet } from '../graphql';
 
 @Injectable()
 export class PlanetsService {
+  private readonly planets: Array<Planet> = [
+    { id: '01964604-7f3b-72b4-884c-e8fc73e86c59', name: 'Alderaan' },
+  ];
+
   create(createPlanetInput: CreatePlanetInput) {
-    return 'This action adds a new planet';
+    const planet = new Planet();
+    planet.id = uuidv7();
+    planet.name = createPlanetInput.name;
+    this.planets.push(planet);
+    return planet;
   }
 
   findAll() {
-    return `This action returns all planets`;
+    return this.planets;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} planet`;
+  findOneById(id: string) {
+    const foundPlanet = this.planets.find((planet) => planet.id === id);
+    return foundPlanet;
   }
 
-  update(id: number, updatePlanetInput: UpdatePlanetInput) {
-    return `This action updates a #${id} planet`;
+  update(id: string, updatePlanetInput: UpdatePlanetInput) {
+    const planetToUpdate = this.planets.find((planet) => planet.id === id);
+
+    if (!planetToUpdate) {
+      throw new Error(`Planet with id #${id} not found`);
+    }
+
+    planetToUpdate.name = updatePlanetInput.name;
+    return planetToUpdate;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} planet`;
+  remove(id: string) {
+    const planetIndex = this.planets.findIndex((planet) => planet.id === id);
+
+    if (planetIndex === -1) {
+      throw new Error(`Planet with id #${id} not found`);
+    }
+
+    const removedPlanet = this.planets.splice(planetIndex, 1)[0];
+    return removedPlanet;
   }
 }

@@ -32,6 +32,7 @@ export class UpdatePlanetInput {
 export class Character {
     id: string;
     name: string;
+    episodes: Episode[];
 }
 
 export abstract class IQuery {

@@ -3,12 +3,22 @@ import { Injectable } from '@nestjs/common';
 
 import { Character } from '../graphql';
 import { CreateCharacterInput } from './dto/create-character.input';
+
 // import { UpdateCharacterInput } from './dto/update-character.input';
 
 @Injectable()
 export class CharactersService {
-  private readonly characters: Array<Character> = [
-    { id: '019645d4-8273-7758-92d7-f20f20d723be', name: 'Luke Skajłoker' },
+  private readonly characters: Array<Character & { episodesIds?: string[] }> = [
+    {
+      id: '019645d4-8273-7758-92d7-f20f20d723be',
+      name: 'Luke Skajłoker',
+      episodesIds: [
+        '019645e2-eb79-77fb-aa90-45713d40d289',
+        '019645e2-eb79-77fb-aa90-4a35b46ae7e2',
+        '019645e2-eb79-77fb-aa90-4c47432a6c01',
+      ],
+      episodes: [],
+    },
   ];
 
   create(createCharacterInput: CreateCharacterInput) {

@@ -8,9 +8,9 @@ import { Episode } from '../graphql';
 @Injectable()
 export class EpisodesService {
   private readonly episodes: Array<Episode> = [
-    { id: uuidv7(), name: 'NEWHOPE' },
-    { id: uuidv7(), name: 'EMPIRE' },
-    { id: uuidv7(), name: 'JEDI' },
+    { id: '019645e2-eb79-77fb-aa90-45713d40d289', name: 'NEWHOPE' },
+    { id: '019645e2-eb79-77fb-aa90-4a35b46ae7e2', name: 'EMPIRE' },
+    { id: '019645e2-eb79-77fb-aa90-4c47432a6c01', name: 'JEDI' },
   ];
 
   create(createEpisodeInput: CreateEpisodeInput) {
@@ -25,8 +25,9 @@ export class EpisodesService {
     return this.episodes;
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} episode`;
+  findOneById(id: string) {
+    const foundEpisode = this.episodes.find((episode) => episode.id === id);
+    return foundEpisode;
   }
 
   update(id: string, updateEpisodeInput: UpdateEpisodeInput) {

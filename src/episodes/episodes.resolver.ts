@@ -19,7 +19,7 @@ export class EpisodesResolver {
 
   @Query('episode')
   findOne(@Args('id') id: string) {
-    return this.episodesService.findOne(id);
+    return this.episodesService.findOneById(id);
   }
 
   @Mutation('updateEpisode')

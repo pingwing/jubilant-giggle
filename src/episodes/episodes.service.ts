@@ -1,26 +1,39 @@
+import { v7 as uuidv7 } from 'uuid';
 import { Injectable } from '@nestjs/common';
+
 import { CreateEpisodeInput } from './dto/create-episode.input';
 import { UpdateEpisodeInput } from './dto/update-episode.input';
+import { Episode } from '../graphql';
 
 @Injectable()
 export class EpisodesService {
+  private readonly episodes: Array<Episode> = [
+    { id: uuidv7(), name: 'NEWHOPE' },
+    { id: uuidv7(), name: 'EMPIRE' },
+    { id: uuidv7(), name: 'JEDI' },
+  ];
+
   create(createEpisodeInput: CreateEpisodeInput) {
-    return 'This action adds a new episode';
+    const episode = new Episode();
+    episode.id = uuidv7();
+    episode.name = createEpisodeInput.name;
+    this.episodes.push(episode);
+    return episode;
   }
 
   findAll() {
-    return `This action returns all episodes`;
+    return this.episodes;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} episode`;
   }
 
-  update(id: number, updateEpisodeInput: UpdateEpisodeInput) {
+  update(id: string, updateEpisodeInput: UpdateEpisodeInput) {
     return `This action updates a #${id} episode`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} episode`;
   }
 }

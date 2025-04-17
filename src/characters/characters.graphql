@@ -7,22 +7,21 @@ type Character {
     #  updated: UpdatedMetadata!
 }
 
-#input CreateCharacterInput {
-#  # Example field (placeholder)
-#  exampleField: Int
-#}
+input CreateCharacterInput {
+    name: String!
+}
 
 #input UpdateCharacterInput {
-#  id: Int!
+#  id: ID!
 #}
 
 type Query {
     characters: [Character]!
-    character(id: Int!): Character
+    character(id: ID!): Character
 }
 
-#type Mutation {
-#  createCharacter(createCharacterInput: CreateCharacterInput!): Character!
-#  updateCharacter(updateCharacterInput: UpdateCharacterInput!): Character!
-#  removeCharacter(id: Int!): Character
-#}
+type Mutation {
+    createCharacter(createCharacterInput: CreateCharacterInput!): Character!
+    #  updateCharacter(updateCharacterInput: UpdateCharacterInput!): Character!
+    #  removeCharacter(id: ID!): Character
+}

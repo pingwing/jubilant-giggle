@@ -8,60 +8,76 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export interface CreateEpisodeInput {
+export class CreateCharacterInput {
+    name: string;
+}
+
+export class CreateEpisodeInput {
+    name: string;
+}
+
+export class UpdateEpisodeInput {
+    id: string;
+}
+
+export class CreatePlanetInput {
     exampleField?: Nullable<number>;
 }
 
-export interface UpdateEpisodeInput {
+export class UpdatePlanetInput {
     id: number;
 }
 
-export interface CreatePlanetInput {
-    exampleField?: Nullable<number>;
-}
-
-export interface UpdatePlanetInput {
-    id: number;
-}
-
-export interface Character {
+export class Character {
     id: string;
     name: string;
 }
 
-export interface IQuery {
-    characters(): Nullable<Character>[] | Promise<Nullable<Character>[]>;
-    character(id: number): Nullable<Character> | Promise<Nullable<Character>>;
-    episodes(): Nullable<Episode>[] | Promise<Nullable<Episode>[]>;
-    episode(id: number): Nullable<Episode> | Promise<Nullable<Episode>>;
-    planets(): Nullable<Planet>[] | Promise<Nullable<Planet>[]>;
-    planet(id: number): Nullable<Planet> | Promise<Nullable<Planet>>;
+export abstract class IQuery {
+    abstract characters(): Nullable<Character>[] | Promise<Nullable<Character>[]>;
+
+    abstract character(id: string): Nullable<Character> | Promise<Nullable<Character>>;
+
+    abstract episodes(): Nullable<Episode>[] | Promise<Nullable<Episode>[]>;
+
+    abstract episode(id: string): Nullable<Episode> | Promise<Nullable<Episode>>;
+
+    abstract planets(): Nullable<Planet>[] | Promise<Nullable<Planet>[]>;
+
+    abstract planet(id: number): Nullable<Planet> | Promise<Nullable<Planet>>;
 }
 
-export interface Episode {
+export abstract class IMutation {
+    abstract createCharacter(createCharacterInput: CreateCharacterInput): Character | Promise<Character>;
+
+    abstract createEpisode(createEpisodeInput: CreateEpisodeInput): Episode | Promise<Episode>;
+
+    abstract updateEpisode(updateEpisodeInput: UpdateEpisodeInput): Episode | Promise<Episode>;
+
+    abstract removeEpisode(id: string): Nullable<Episode> | Promise<Nullable<Episode>>;
+
+    abstract createPlanet(createPlanetInput: CreatePlanetInput): Planet | Promise<Planet>;
+
+    abstract updatePlanet(updatePlanetInput: UpdatePlanetInput): Planet | Promise<Planet>;
+
+    abstract removePlanet(id: number): Nullable<Planet> | Promise<Nullable<Planet>>;
+}
+
+export class Episode {
     id: string;
     name: string;
 }
 
-export interface IMutation {
-    createEpisode(createEpisodeInput: CreateEpisodeInput): Episode | Promise<Episode>;
-    updateEpisode(updateEpisodeInput: UpdateEpisodeInput): Episode | Promise<Episode>;
-    removeEpisode(id: number): Nullable<Episode> | Promise<Nullable<Episode>>;
-    createPlanet(createPlanetInput: CreatePlanetInput): Planet | Promise<Planet>;
-    updatePlanet(updatePlanetInput: UpdatePlanetInput): Planet | Promise<Planet>;
-    removePlanet(id: number): Nullable<Planet> | Promise<Nullable<Planet>>;
-}
-
-export interface Planet {
+export class Planet {
     id: string;
     name: string;
 }
 
-export interface CreatedMetadata {
+export class CreatedMetadata {
     createdAt: string;
 }
 
-export interface UpdatedMetadata {
+export class UpdatedMetadata {
     updatedAt: string;
 }
 

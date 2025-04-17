@@ -18,17 +18,20 @@ export class EpisodesResolver {
   }
 
   @Query('episode')
-  findOne(@Args('id') id: number) {
+  findOne(@Args('id') id: string) {
     return this.episodesService.findOne(id);
   }
 
   @Mutation('updateEpisode')
   update(@Args('updateEpisodeInput') updateEpisodeInput: UpdateEpisodeInput) {
-    return this.episodesService.update(updateEpisodeInput.id, updateEpisodeInput);
+    return this.episodesService.update(
+      updateEpisodeInput.id,
+      updateEpisodeInput,
+    );
   }
 
   @Mutation('removeEpisode')
-  remove(@Args('id') id: number) {
+  remove(@Args('id') id: string) {
     return this.episodesService.remove(id);
   }
 }

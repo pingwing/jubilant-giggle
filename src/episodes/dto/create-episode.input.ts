@@ -1,1 +1,3 @@
-export class CreateEpisodeInput {}
+export class CreateEpisodeInput {
+  name: string;
+}

@@ -6,21 +6,20 @@ type Episode {
 }
 
 input CreateEpisodeInput {
-  # Example field (placeholder)
-  exampleField: Int
+  name: String!
 }
 
 input UpdateEpisodeInput {
-  id: Int!
+  id: ID!
 }
 
 type Query {
   episodes: [Episode]!
-  episode(id: Int!): Episode
+  episode(id: ID!): Episode
 }
 
 type Mutation {
   createEpisode(createEpisodeInput: CreateEpisodeInput!): Episode!
   updateEpisode(updateEpisodeInput: UpdateEpisodeInput!): Episode!
-  removeEpisode(id: Int!): Episode
+  removeEpisode(id: ID!): Episode
 }

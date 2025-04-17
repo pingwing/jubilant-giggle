@@ -1,1 +1,3 @@
-export class CreateCharacterInput {}
+export class CreateCharacterInput {
+  name: string;
+}

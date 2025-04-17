@@ -19,6 +19,7 @@ const localEnvironment = process.env.ENVIRONMENT === 'LOCAL';
       typePaths: ['./**/*.graphql'],
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
+        outputAs: 'class',
       },
     }),
     CharactersModule,

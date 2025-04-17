@@ -1,0 +1,11 @@
+type Query {
+  characters: [Character]
+  character(id: ID!): Character
+}
+
+type Character {
+  id: ID!
+  name: String!
+  episodes: [Episode]
+  planet: Planet
+}

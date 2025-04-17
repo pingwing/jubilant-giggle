@@ -41,6 +41,15 @@ export class EpisodesService {
   }
 
   remove(id: string) {
-    return `This action removes a #${id} episode`;
+    const episodeIndex = this.episodes.findIndex(
+      (episode) => episode.id === id,
+    );
+
+    if (episodeIndex === -1) {
+      throw new Error(`Episode with id #${id} not found`);
+    }
+
+    const removedEpisode = this.episodes.splice(episodeIndex, 1)[0];
+    return removedEpisode;
   }
 }

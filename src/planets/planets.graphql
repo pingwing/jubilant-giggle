@@ -6,4 +6,8 @@ type Query {
 type Planet {
   id: ID!
   name: String!
+  createdAt: String! # TODO: use GraphQL Scalars Timestamp
+  updatedAt: String! # TODO: use GraphQL Scalars Timestamp
+  #createdBy: ID! # or User type, Auth and user management was not part of the assignment, but it's always there
+  #updatedBy: ID! # or User type, Auth and user management was not part of the assignment, but it's always there
 }

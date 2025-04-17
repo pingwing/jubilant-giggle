@@ -1,16 +1,30 @@
-type Query {
-    characters: [Character]
-    character(id: ID!): Character
-}
-
-
 type Character {
-    id: ID!
-    name: String!
-    #  episodes: [Episode!]!
-    #  planet: Planet
-    #  createdAt: String! # TODO: use GraphQL Scalars Timestamp
-    #  updatedAt: String! # TODO: use GraphQL Scalars Timestamp
-    #  createdBy: ID! # or User type, Auth and user management was not part of the assignment, but it's always there
-    #  updatedBy: ID! # or User type, Auth and user management was not part of the assignment, but it's always there
+  id: ID!
+  name: String!
+  #  episodes: [Episode!]!
+  #  planet: Planet
+  #  createdAt: String! # TODO: use GraphQL Scalars Timestamp
+  #  updatedAt: String! # TODO: use GraphQL Scalars Timestamp
+  #  createdBy: ID! # or User type, Auth and user management was not part of the assignment, but it's always there
+  #  updatedBy: ID! # or User type, Auth and user management was not part of the assignment, but it's always there
 }
+
+#input CreateCharacterInput {
+#  # Example field (placeholder)
+#  exampleField: Int
+#}
+
+#input UpdateCharacterInput {
+#  id: Int!
+#}
+
+type Query {
+  characters: [Character]!
+  character(id: Int!): Character
+}
+
+#type Mutation {
+#  createCharacter(createCharacterInput: CreateCharacterInput!): Character!
+#  updateCharacter(updateCharacterInput: UpdateCharacterInput!): Character!
+#  removeCharacter(id: Int!): Character
+#}

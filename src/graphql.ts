@@ -37,6 +37,7 @@ export class Character {
     id: string;
     name: string;
     episodes: Episode[];
+    planet?: Nullable<Planet>;
 }
 
 export abstract class IQuery {

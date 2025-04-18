@@ -2,7 +2,7 @@ type Character {
     id: ID!
     name: String!
     episodes: [Episode!]!
-    #  planet: Planet
+    planet: Planet
     #  created: CreatedMetadata!
     #  updated: UpdatedMetadata!
 }

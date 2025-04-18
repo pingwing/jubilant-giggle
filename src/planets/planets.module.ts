@@ -4,5 +4,6 @@ import { PlanetsResolver } from './planets.resolver';
 
 @Module({
   providers: [PlanetsResolver, PlanetsService],
+  exports: [PlanetsService],
 })
 export class PlanetsModule {}

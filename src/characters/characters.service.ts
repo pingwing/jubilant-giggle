@@ -7,7 +7,9 @@ import { UpdateCharacterInput } from './dto/update-character.input';
 
 @Injectable()
 export class CharactersService {
-  private readonly characters: Array<Character & { episodesIds?: string[] }> = [
+  private readonly characters: Array<
+    Character & { episodesIds?: string[]; planetId?: string }
+  > = [
     {
       id: '019645d4-8273-7758-92d7-f20f20d723be',
       name: 'Luke Skajłoker',
@@ -17,6 +19,7 @@ export class CharactersService {
         '019645e2-eb79-77fb-aa90-4c47432a6c01',
       ],
       episodes: [],
+      planetId: '01964604-7f3b-72b4-884c-e8fc73e86c59',
     },
   ];
 
@@ -33,7 +36,7 @@ export class CharactersService {
   }
 
   findOne(id: string) {
-    return `This action returns a #${id} character`;
+    return this.characters.find((character) => character.id === id);
   }
 
   update(id: string, updateCharacterInput: UpdateCharacterInput) {

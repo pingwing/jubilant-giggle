@@ -15,7 +15,7 @@ export class CharacterEpisodesResolver {
       const foundEpisode = this.episodesService.findOneById(episodeId);
 
       if (!foundEpisode) {
-        throw new Error(`No episode with id ${episodeId}`);
+        throw new Error(`No episode with id ${episodeId} found`);
       }
 
       foundEpisodes.push(foundEpisode);

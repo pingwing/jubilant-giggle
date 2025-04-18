@@ -7,14 +7,9 @@ export class CharacterPlanetResolver {
   constructor(private readonly planetsService: PlanetsService) {}
 
   @ResolveField()
-  planet(@Parent() character: Character & { planetId: string }): Planet {
-    console.log('PINGWING: 11 character', character);
-    const foundPlanet = this.planetsService.findOneById(character.planetId);
-
-    if (!foundPlanet) {
-      throw new Error(`No planet with id ${character.planetId} found`);
-    }
-
-    return foundPlanet;
+  planet(
+    @Parent() character: Character & { planetId: string },
+  ): Planet | undefined {
+    return this.planetsService.findOneById(character.planetId);
   }
 }

@@ -24,8 +24,7 @@ export class PlanetsService {
   }
 
   findOneById(id: string) {
-    const foundPlanet = this.planets.find((planet) => planet.id === id);
-    return foundPlanet;
+    return this.planets.find((planet) => planet.id === id);
   }
 
   update(id: string, updatePlanetInput: UpdatePlanetInput) {
@@ -46,7 +45,6 @@ export class PlanetsService {
       throw new Error(`Planet with id #${id} not found`);
     }
 
-    const removedPlanet = this.planets.splice(planetIndex, 1)[0];
-    return removedPlanet;
+    return this.planets.splice(planetIndex, 1)[0];
   }
 }

@@ -32,13 +32,18 @@ export class CharactersResolver {
     return this.charactersService.findOne(id);
   }
 
-  // @Mutation('updateCharacter')
-  // update(@Args('updateCharacterInput') updateCharacterInput: UpdateCharacterInput) {
-  //   return this.charactersService.update(updateCharacterInput.id, updateCharacterInput);
-  // }
-  //
-  // @Mutation('removeCharacter')
-  // remove(@Args('id') id: number) {
-  //   return this.charactersService.remove(id);
-  // }
+  @Mutation('updateCharacter')
+  update(
+    @Args('updateCharacterInput') updateCharacterInput: UpdateCharacterInput,
+  ) {
+    return this.charactersService.update(
+      updateCharacterInput.id,
+      updateCharacterInput,
+    );
+  }
+
+  @Mutation('removeCharacter')
+  remove(@Args('id') id: string) {
+    return this.charactersService.remove(id);
+  }
 }

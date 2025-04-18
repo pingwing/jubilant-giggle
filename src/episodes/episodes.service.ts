@@ -26,8 +26,7 @@ export class EpisodesService {
   }
 
   findOneById(id: string) {
-    const foundEpisode = this.episodes.find((episode) => episode.id === id);
-    return foundEpisode;
+    return this.episodes.find((episode) => episode.id === id);
   }
 
   update(id: string, updateEpisodeInput: UpdateEpisodeInput) {
@@ -50,7 +49,6 @@ export class EpisodesService {
       throw new Error(`Episode with id #${id} not found`);
     }
 
-    const removedEpisode = this.episodes.splice(episodeIndex, 1)[0];
-    return removedEpisode;
+    return this.episodes.splice(episodeIndex, 1)[0];
   }
 }

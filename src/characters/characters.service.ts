@@ -3,8 +3,7 @@ import { Injectable } from '@nestjs/common';
 
 import { Character } from '../graphql';
 import { CreateCharacterInput } from './dto/create-character.input';
-
-// import { UpdateCharacterInput } from './dto/update-character.input';
+import { UpdateCharacterInput } from './dto/update-character.input';
 
 @Injectable()
 export class CharactersService {
@@ -37,11 +36,28 @@ export class CharactersService {
     return `This action returns a #${id} character`;
   }
 
-  // update(id: number, updateCharacterInput: UpdateCharacterInput) {
-  //   return `This action updates a #${id} character`;
-  // }
+  update(id: string, updateCharacterInput: UpdateCharacterInput) {
+    const characterToUpdate = this.characters.find(
+      (character) => character.id === id,
+    );
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} character`;
-  // }
+    if (!characterToUpdate) {
+      throw new Error(`Character with id #${id} not found`);
+    }
+
+    characterToUpdate.name = updateCharacterInput.name;
+    return characterToUpdate;
+  }
+
+  remove(id: string) {
+    const characterIndex = this.characters.findIndex(
+      (character) => character.id === id,
+    );
+
+    if (characterIndex === -1) {
+      throw new Error(`Character with id #${id} not found`);
+    }
+
+    return this.characters.splice(characterIndex, 1)[0];
+  }
 }

@@ -12,6 +12,10 @@ export class CreateCharacterInput {
     name: string;
 }
 
+export class UpdateCharacterInput {
+    id: string;
+}
+
 export class CreateEpisodeInput {
     name: string;
 }
@@ -51,6 +55,10 @@ export abstract class IQuery {
 
 export abstract class IMutation {
     abstract createCharacter(createCharacterInput: CreateCharacterInput): Character | Promise<Character>;
+
+    abstract updateCharacter(updateCharacterInput: UpdateCharacterInput): Character | Promise<Character>;
+
+    abstract removeCharacter(id: string): Nullable<Character> | Promise<Nullable<Character>>;
 
     abstract createEpisode(createEpisodeInput: CreateEpisodeInput): Episode | Promise<Episode>;
 

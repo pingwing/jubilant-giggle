@@ -34,7 +34,7 @@ describe('AppController (e2e)', () => {
   });
 
   it('Happy Path 1: should create a new character', async () => {
-    // get all characters to check the starting state
+    // STEP 1: get all characters to check the starting state
     const server = app.getHttpServer();
     const response1 = await request(server)
       .post('/graphql')
@@ -44,7 +44,7 @@ describe('AppController (e2e)', () => {
     expect(responseBody1?.errors).toBeUndefined();
     expect(responseBody1?.data?.characters).toHaveLength(1);
 
-    // add a new character
+    // STEP 2: add a new character
     const response2 = await request(server)
       .post('/graphql')
       .send({ query: createCharacterMutationQueryString })
@@ -56,7 +56,7 @@ describe('AppController (e2e)', () => {
     ).id;
     expect(newlyCreatedCharacterId).toBeDefined();
 
-    // get all characters to confirm the new character was added
+    // STEP 3: get all characters to confirm the new character was added
     const response3 = await request(server)
       .post('/graphql')
       .send({ query: getAllCharactersQueryString })
@@ -65,7 +65,7 @@ describe('AppController (e2e)', () => {
     expect(responseBody3?.errors).toBeUndefined();
     expect(responseBody3?.data?.characters).toHaveLength(2);
 
-    // update name of newly created character
+    // STEP 4: update name of newly created character
     const newCharacterName = 'Jens Maul';
     const response4 = await request(server)
       .post('/graphql')
@@ -77,7 +77,7 @@ describe('AppController (e2e)', () => {
     const responseBody4 = response4.body as GraphqlResponse;
     expect(responseBody4?.errors).toBeUndefined();
 
-    // get all characters to confirm that the character was renamed
+    // STEP 5: get all characters to confirm that the character was renamed
     const response5 = await request(server)
       .post('/graphql')
       .send({ query: getAllCharactersQueryString })

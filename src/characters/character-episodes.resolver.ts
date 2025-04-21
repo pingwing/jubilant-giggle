@@ -11,14 +11,16 @@ export class CharacterEpisodesResolver {
     @Parent() character: Character & { episodesIds: string },
   ): Episode[] {
     const foundEpisodes: Episode[] = [];
-    for (const episodeId of character.episodesIds) {
-      const foundEpisode = this.episodesService.findOneById(episodeId);
+    if (character.episodesIds && character.episodesIds.length > 0) {
+      for (const episodeId of character.episodesIds) {
+        const foundEpisode = this.episodesService.findOneById(episodeId);
 
-      if (!foundEpisode) {
-        throw new Error(`No episode with id ${episodeId} found`);
+        if (!foundEpisode) {
+          throw new Error(`No episode with id ${episodeId} found`);
+        }
+
+        foundEpisodes.push(foundEpisode);
       }
-
-      foundEpisodes.push(foundEpisode);
     }
 
     return foundEpisodes;

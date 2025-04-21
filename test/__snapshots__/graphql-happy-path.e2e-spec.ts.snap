@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppController (e2e) should get all characters 1`] = `
+[
+  {
+    "episodes": [
+      {
+        "name": "NEWHOPE",
+      },
+      {
+        "name": "EMPIRE",
+      },
+      {
+        "name": "JEDI",
+      },
+    ],
+    "id": "019645d4-8273-7758-92d7-f20f20d723be",
+    "name": "Luke Skajłoker",
+    "planet": {
+      "name": "Alderaan",
+    },
+  },
+]
+`;

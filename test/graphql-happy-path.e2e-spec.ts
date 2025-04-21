@@ -66,11 +66,12 @@ describe('AppController (e2e)', () => {
     expect(responseBody3?.data?.characters).toHaveLength(2);
 
     // update name of newly created character
+    const newCharacterName = 'Jens Maul';
     const response4 = await request(server)
       .post('/graphql')
       .send({
         query: updateCharacterMutationQueryString,
-        variables: { idToUpdate: newlyCreatedCharacterId },
+        variables: { idToUpdate: newlyCreatedCharacterId, newCharacterName },
       })
       .expect(200);
     const responseBody4 = response4.body as GraphqlResponse;
@@ -86,6 +87,6 @@ describe('AppController (e2e)', () => {
     expect(responseBody5?.data?.characters).toHaveLength(2);
     expect(
       (responseBody5?.data?.characters as { name: string }[])[1].name,
-    ).toEqual('Jens Maul');
+    ).toEqual(newCharacterName);
   });
 });

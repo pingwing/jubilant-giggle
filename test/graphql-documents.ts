@@ -37,9 +37,9 @@ export const createCharacterMutationQueryString =
   createCharacterMutation.loc?.source.body;
 
 const updateCharacterMutation = gql`
-  mutation UpdateCharacter($idToUpdate: ID!) {
+  mutation UpdateCharacter($idToUpdate: ID!, $newCharacterName: String!) {
     updateCharacter(
-      updateCharacterInput: { id: $idToUpdate, name: "Jens Maul" }
+      updateCharacterInput: { id: $idToUpdate, name: $newCharacterName }
     ) {
       id
       name

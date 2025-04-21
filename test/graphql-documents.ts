@@ -35,3 +35,16 @@ const createCharacterMutation = gql`
 `;
 export const createCharacterMutationQueryString =
   createCharacterMutation.loc?.source.body;
+
+const updateCharacterMutation = gql`
+  mutation UpdateCharacter($idToUpdate: ID!) {
+    updateCharacter(
+      updateCharacterInput: { id: $idToUpdate, name: "Jens Maul" }
+    ) {
+      id
+      name
+    }
+  }
+`;
+export const updateCharacterMutationQueryString =
+  updateCharacterMutation.loc?.source.body;

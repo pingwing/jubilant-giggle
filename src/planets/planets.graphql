@@ -11,6 +11,7 @@ input CreatePlanetInput {
 
 input UpdatePlanetInput {
     id: ID!
+    name: String
 }
 
 type Query {

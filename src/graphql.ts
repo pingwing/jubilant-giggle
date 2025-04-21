@@ -14,6 +14,7 @@ export class CreateCharacterInput {
 
 export class UpdateCharacterInput {
     id: string;
+    name: string;
 }
 
 export class CreateEpisodeInput {
@@ -31,6 +32,7 @@ export class CreatePlanetInput {
 
 export class UpdatePlanetInput {
     id: string;
+    name?: Nullable<string>;
 }
 
 export class Character {

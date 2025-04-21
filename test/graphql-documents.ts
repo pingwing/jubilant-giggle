@@ -24,3 +24,14 @@ const getAllCharactersQuery = gql`
 `;
 export const getAllCharactersQueryString =
   getAllCharactersQuery.loc?.source.body;
+
+const createCharacterMutation = gql`
+  mutation {
+    createCharacter(createCharacterInput: { name: "Darth Vader" }) {
+      id
+      name
+    }
+  }
+`;
+export const createCharacterMutationQueryString =
+  createCharacterMutation.loc?.source.body;

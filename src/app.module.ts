@@ -5,6 +5,9 @@ import { AppService } from './app.service';
 
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { CharactersModule } from './characters/characters.module';
+import { EpisodesModule } from './episodes/episodes.module';
+import { PlanetsModule } from './planets/planets.module';
 
 const localEnvironment = process.env.ENVIRONMENT === 'LOCAL';
 
@@ -16,8 +19,12 @@ const localEnvironment = process.env.ENVIRONMENT === 'LOCAL';
       typePaths: ['./**/*.graphql'],
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
+        outputAs: 'class',
       },
     }),
+    CharactersModule,
+    EpisodesModule,
+    PlanetsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

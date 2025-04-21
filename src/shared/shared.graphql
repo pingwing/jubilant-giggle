@@ -1,0 +1,9 @@
+type CreatedMetadata {
+    createdAt: String! # TODO: use GraphQL Scalars Timestamp
+    #    createdBy: ID! # or User type, Auth and user management was not part of the assignment, but it's always there
+}
+
+type UpdatedMetadata {
+    updatedAt: String! # TODO: use GraphQL Scalars Timestamp
+    #    updatedBy: ID! # or User type, Auth and user management was not part of the assignment, but it's always there
+}

@@ -26,11 +26,11 @@ export class UpdateEpisodeInput {
 }
 
 export class CreatePlanetInput {
-    exampleField?: Nullable<number>;
+    name?: Nullable<string>;
 }
 
 export class UpdatePlanetInput {
-    id: number;
+    id: string;
 }
 
 export class Character {
@@ -38,8 +38,6 @@ export class Character {
     name: string;
     episodes: Episode[];
     planet?: Nullable<Planet>;
-    createdAt: string;
-    updatedAt: string;
 }
 
 export abstract class IQuery {
@@ -53,7 +51,7 @@ export abstract class IQuery {
 
     abstract planets(): Nullable<Planet>[] | Promise<Nullable<Planet>[]>;
 
-    abstract planet(id: number): Nullable<Planet> | Promise<Nullable<Planet>>;
+    abstract planet(id: string): Nullable<Planet> | Promise<Nullable<Planet>>;
 }
 
 export abstract class IMutation {
@@ -73,21 +71,17 @@ export abstract class IMutation {
 
     abstract updatePlanet(updatePlanetInput: UpdatePlanetInput): Planet | Promise<Planet>;
 
-    abstract removePlanet(id: number): Nullable<Planet> | Promise<Nullable<Planet>>;
+    abstract removePlanet(id: string): Nullable<Planet> | Promise<Nullable<Planet>>;
 }
 
 export class Episode {
     id: string;
     name: string;
-    createdAt: string;
-    updatedAt: string;
 }
 
 export class Planet {
     id: string;
     name: string;
-    createdAt: string;
-    updatedAt: string;
 }
 
 export class CreatedMetadata {

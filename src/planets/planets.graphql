@@ -6,7 +6,7 @@ type Planet {
 }
 
 input CreatePlanetInput {
-    name: string
+    name: String
 }
 
 input UpdatePlanetInput {

@@ -3,15 +3,14 @@ import { CharactersResolver } from './characters.resolver';
 import { Character } from '../graphql';
 import { CharactersService } from './characters.service';
 
-const characterData = {
-  name: 'Luke Skajłoker',
-  id: 'someCharacterId',
-  episodes: [],
-};
-const characters: Character[] = [characterData];
-
 describe('CharactersResolver', () => {
   let resolver: CharactersResolver;
+  const characterData = {
+    name: 'Luke Skajłoker',
+    id: 'someCharacterId',
+    episodes: [],
+  };
+  const characters: Character[] = [characterData];
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({

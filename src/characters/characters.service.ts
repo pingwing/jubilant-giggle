@@ -83,6 +83,7 @@ export class CharactersService {
     const character = new Character();
     character.id = uuidv7();
     character.name = createCharacterInput.name;
+    character.episodes = [];
     this.characters.push(character);
     return character;
   }

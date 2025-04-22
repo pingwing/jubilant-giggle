@@ -2,14 +2,14 @@ import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
 import { EpisodesService } from '../episodes/episodes.service';
 import { Character, Episode } from '../graphql';
 
+export type CharacterWithEpisodesIds = Character & { episodesIds: string[] };
+
 @Resolver('Character')
 export class CharacterEpisodesResolver {
   constructor(private readonly episodesService: EpisodesService) {}
 
   @ResolveField()
-  episodes(
-    @Parent() character: Character & { episodesIds: string[] },
-  ): Episode[] {
+  episodes(@Parent() character: CharacterWithEpisodesIds): Episode[] {
     const foundEpisodes: Episode[] = [];
     if (character.episodesIds && character.episodesIds.length > 0) {
       for (const episodeId of character.episodesIds) {

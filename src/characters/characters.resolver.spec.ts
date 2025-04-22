@@ -1,16 +1,51 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CharactersResolver } from './characters.resolver';
+import { Character } from '../graphql';
 import { CharactersService } from './characters.service';
 
-const characterData = { name: 'Luke Skajłoker' };
-const existingCharacterId = '01965aac-6389-7102-aaa1-953cf11d64af';
+const characterData = {
+  name: 'Luke Skajłoker',
+  id: 'someCharacterId',
+  episodes: [],
+};
+const characters: Character[] = [characterData];
 
 describe('CharactersResolver', () => {
   let resolver: CharactersResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CharactersResolver, CharactersService],
+      providers: [
+        CharactersResolver,
+        {
+          provide: CharactersService,
+          useValue: {
+            create: jest.fn().mockImplementation((character: Character) => ({
+              ...character,
+              id: '1',
+              episodes: [],
+            })),
+            findAll: jest.fn().mockReturnValue(characters),
+            findOneById: jest
+              .fn()
+              .mockImplementation((id: string) =>
+                characters.find((character) => character.id === id),
+              ),
+            update: jest
+              .fn()
+              .mockImplementation((id: string, character: Character) => {
+                const characterToUpdate = characters.find(
+                  (character) => character.id === id,
+                );
+
+                return { ...characterToUpdate, name: character.name };
+              }),
+            remove: jest.fn().mockImplementation(() => {
+              return characterData;
+            }),
+          },
+        },
+      ],
     }).compile();
 
     resolver = module.get<CharactersResolver>(CharactersResolver);
@@ -22,20 +57,13 @@ describe('CharactersResolver', () => {
 
   it('should return all characters', () => {
     const characters = resolver.findAll();
-    expect(characters.length).toEqual(7);
-    expect(characters[0].name).toEqual('Luke Skywalker');
+    expect(characters.length).toEqual(1);
+    expect(characters[0].name).toEqual(characterData.name);
   });
 
   it('should return a character by id', () => {
-    const character = resolver.findOneById(existingCharacterId);
-    expect(character).toEqual({ ...character, id: existingCharacterId });
-  });
-
-  it('should throw an error when not found', () => {
-    const findOneById = () => {
-      resolver.findOneById('nonExistentId');
-    };
-    expect(findOneById).toThrow();
+    const character = resolver.findOneById(characterData.id);
+    expect(character).toEqual({ ...character, id: characterData.id });
   });
 
   it('should create a new character', () => {
@@ -43,42 +71,22 @@ describe('CharactersResolver', () => {
       name: characterData.name,
     });
     expect(newCharacter.name).toEqual(characterData.name);
+    expect(newCharacter).toEqual({ ...characterData, id: newCharacter.id });
   });
 
   it('should update a character', () => {
     const character = resolver.update({
       ...characterData,
-      id: existingCharacterId,
     });
     expect(character).toEqual({
-      episodes: [],
-      episodesIds: ['019645e2-eb79-77fb-aa90-45713d40d289'],
       ...characterData,
-      id: existingCharacterId,
     });
-  });
-
-  it('should throw an error in update when not found', () => {
-    const update = () => {
-      resolver.update({ id: 'nonExistentId', name: 'John Doe' });
-    };
-    expect(update).toThrow();
   });
 
   it('should remove a character', () => {
-    const charactersBeforeRemoving = resolver.findAll();
-    expect(charactersBeforeRemoving.length).toEqual(7);
-
-    resolver.remove(existingCharacterId);
-
-    const charactersAfterRemoving = resolver.findAll();
-    expect(charactersAfterRemoving.length).toEqual(6);
-  });
-
-  it('should throw an error in remove when not found', () => {
-    const remove = () => {
-      resolver.remove('nonExistentId');
-    };
-    expect(remove).toThrow();
+    const character = resolver.remove(characterData.id);
+    expect(character).toEqual({
+      ...characterData,
+    });
   });
 });

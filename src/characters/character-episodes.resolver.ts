@@ -8,7 +8,7 @@ export class CharacterEpisodesResolver {
 
   @ResolveField()
   episodes(
-    @Parent() character: Character & { episodesIds: string },
+    @Parent() character: Character & { episodesIds: string[] },
   ): Episode[] {
     const foundEpisodes: Episode[] = [];
     if (character.episodesIds && character.episodesIds.length > 0) {

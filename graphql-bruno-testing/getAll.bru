@@ -5,14 +5,14 @@ meta {
 }
 
 post {
-  url: http://main-graphql-alb-2125808656.eu-central-1.elb.amazonaws.com/graphql
+  url: http://main-graphql-alb-2125808656.eu-central-1.elb.amazonaws.com
   body: graphql
   auth: none
 }
 
 body:graphql {
   query GetAllCharacters {
-      characters {
+      characters(getCharactersInput: { first: 5, after: 0  }) {
         id
         name
         episodes {

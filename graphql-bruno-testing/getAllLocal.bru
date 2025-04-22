@@ -1,0 +1,27 @@
+meta {
+  name: getAllLocal
+  type: graphql
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/graphql
+  body: graphql
+  auth: none
+}
+
+body:graphql {
+  query GetAllCharacters {
+    characters(getCharactersInput: { first: 3, after: 0 }) {
+      id
+      name
+      episodes {
+        name
+      }
+      planet {
+        name
+      }
+    }
+  }
+  
+}

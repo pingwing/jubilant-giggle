@@ -7,6 +7,9 @@
   "license": "MIT",
   "scripts": {
     "build": "nest build",
+    "build:withgql": "rm -rf dist && npm run build && copyfiles *.graphql dist/",
+    "copy:gql": "copyfiles *.graphql dist/",
+    "bundle": "esbuild ./dist/src/main.js --bundle --outfile=./dist/bundle.js --platform=node",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "ENVIRONMENT=LOCAL nest start --watch",
@@ -18,6 +21,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:e2e:updateSnaphots": "npm run test:e2e -- -u",
     "test:load": "artillery run test-load/load-test.js",
     "generateSchema": "ts-node scripts/generate-typings"
   },
@@ -48,6 +52,7 @@
     "@types/node": "^22.10.7",
     "@types/supertest": "^6.0.2",
     "artillery": "^2.0.22",
+    "copyfiles": "^2.4.1",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",

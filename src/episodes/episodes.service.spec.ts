@@ -4,7 +4,7 @@ import { Episode } from '../graphql';
 
 describe('EpisodesService', () => {
   let service: EpisodesService;
-  const episode: Episode = { name: 'PHANTOMMENACE', id: 'non_relevant' };
+  const episodeData: Episode = { name: 'PHANTOMMENACE', id: 'non_relevant' };
   const existingEpisodeIdToFind = '019645e2-eb79-77fb-aa90-4a35b46ae7e2';
 
   beforeEach(async () => {
@@ -20,9 +20,9 @@ describe('EpisodesService', () => {
   });
 
   it('should create a new episode', () => {
-    const newEpisode = service.create(episode);
-    expect(newEpisode.name).toEqual(episode.name);
-    expect(newEpisode).toEqual({ ...episode, id: newEpisode.id });
+    const newEpisode = service.create(episodeData);
+    expect(newEpisode.name).toEqual(episodeData.name);
+    expect(newEpisode).toEqual({ ...episodeData, id: newEpisode.id });
   });
 
   it('should return all episodes', () => {
@@ -39,5 +39,39 @@ describe('EpisodesService', () => {
   it('should return undefined if episode not found', () => {
     const episode = service.findOneById('2');
     expect(episode).toBeUndefined();
+  });
+
+  it('should update an episode', () => {
+    const episode = service.update(existingEpisodeIdToFind, episodeData);
+    expect(episode).toEqual({
+      ...episode,
+    });
+  });
+
+  it('should throw an error when episode to update not found', () => {
+    const failedUpdate = () => {
+      service.update('non-existent-episode', episodeData);
+    };
+    expect(failedUpdate).toThrow();
+  });
+
+  it('should remove an episode', () => {
+    const episodesBefore = service.findAll();
+    expect(episodesBefore.length).toEqual(3);
+
+    const episode = service.remove(existingEpisodeIdToFind);
+    expect(episode).toEqual({
+      ...episode,
+    });
+
+    const episodesAfter = service.findAll();
+    expect(episodesAfter.length).toEqual(2);
+  });
+
+  it('should throw an error when episode to remove not found', () => {
+    const failedRemove = () => {
+      service.remove('non-existent-episode');
+    };
+    expect(failedRemove).toThrow();
   });
 });

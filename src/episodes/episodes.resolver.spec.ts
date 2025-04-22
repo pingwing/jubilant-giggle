@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { EpisodesResolver } from './episodes.resolver';
 import { EpisodesService } from './episodes.service';
-import { Episode, Planet } from '../graphql';
+import { Episode } from '../graphql';
 
 describe('EpisodesResolver', () => {
   let resolver: EpisodesResolver;
-  const episode: Episode = { name: 'PHANTOMMENACE', id: 'non_relevant' };
-  const existingEpisodeIdToFind = '019645e2-eb79-77fb-aa90-4a35b46ae7e2';
+  const episodeData: Episode = { name: 'PHANTOMMENACE', id: 'phantomMenaceId' };
+  const episodes: Episode[] = [episodeData];
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -15,13 +15,24 @@ describe('EpisodesResolver', () => {
         {
           provide: EpisodesService,
           useValue: {
-            create: jest
-              .fn()
-              .mockImplementation((episode: Planet) => ({ ...episode, id: 1 })),
-            findAll: jest.fn().mockReturnValue([episode]),
+            create: jest.fn().mockImplementation((episode: Episode) => ({
+              ...episode,
+              id: '1',
+            })),
+            findAll: jest.fn().mockReturnValue(episodes),
             findOneById: jest
               .fn()
-              .mockImplementation((id: number) => ({ ...episode, id })),
+              .mockImplementation((id: string) =>
+                episodes.find((episode) => episode.id === id),
+              ),
+            update: jest
+              .fn()
+              .mockImplementation((_id: string, episode: Episode) => {
+                return episode;
+              }),
+            remove: jest.fn().mockImplementation(() => {
+              return episodeData;
+            }),
           },
         },
       ],
@@ -34,22 +45,36 @@ describe('EpisodesResolver', () => {
     expect(resolver).toBeDefined();
   });
 
-  it('should create a new episode', () => {
-    const newEpisode = resolver.create({
-      name: episode.name,
-    });
-    expect(newEpisode.name).toEqual(episode.name);
-    expect(newEpisode).toEqual({ ...episode, id: newEpisode.id });
-  });
-
   it('should return all episodes', () => {
     const episodes = resolver.findAll();
     expect(episodes.length).toEqual(1);
-    expect(episodes[0].name).toEqual(episode.name);
+    expect(episodes[0].name).toEqual(episodeData.name);
   });
 
   it('should return an episode by id', () => {
-    const episode = resolver.findOne(existingEpisodeIdToFind);
-    expect(episode).toEqual({ ...episode, id: existingEpisodeIdToFind });
+    const episode = resolver.findOneById(episodeData.id);
+    expect(episode).toEqual({ ...episodeData });
+  });
+
+  it('should create a new episode', () => {
+    const newEpisode = resolver.create({
+      name: episodeData.name,
+    });
+    expect(newEpisode.name).toEqual(episodeData.name);
+    expect(newEpisode).toEqual({ ...episodeData, id: newEpisode.id });
+  });
+
+  it('should update an episode', () => {
+    const episode = resolver.update(episodeData);
+    expect(episode).toEqual({
+      ...episodeData,
+    });
+  });
+
+  it('should remove an episode', () => {
+    const episode = resolver.remove(episodeData.id);
+    expect(episode).toEqual({
+      ...episodeData,
+    });
   });
 });

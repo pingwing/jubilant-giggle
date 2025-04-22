@@ -83,6 +83,7 @@ export class CharactersService {
     const character = new Character();
     character.id = uuidv7();
     character.name = createCharacterInput.name;
+    character.episodes = [];
     this.characters.push(character);
     return character;
   }
@@ -91,8 +92,14 @@ export class CharactersService {
     return this.characters;
   }
 
-  findOne(id: string) {
-    return this.characters.find((character) => character.id === id);
+  findOneById(id: string) {
+    const foundCharacter = this.characters.find(
+      (character) => character.id === id,
+    );
+    if (!foundCharacter) {
+      throw new Error(`Character with id: ${id} not found`);
+    }
+    return foundCharacter;
   }
 
   update(id: string, updateCharacterInput: UpdateCharacterInput) {
@@ -101,7 +108,7 @@ export class CharactersService {
     );
 
     if (!characterToUpdate) {
-      throw new Error(`Character with id #${id} not found`);
+      throw new Error(`Character with id: ${id} not found`);
     }
 
     characterToUpdate.name = updateCharacterInput.name;
@@ -114,7 +121,7 @@ export class CharactersService {
     );
 
     if (characterIndex === -1) {
-      throw new Error(`Character with id #${id} not found`);
+      throw new Error(`Character with id: ${id} not found`);
     }
 
     return this.characters.splice(characterIndex, 1)[0];

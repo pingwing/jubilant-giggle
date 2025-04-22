@@ -31,7 +31,7 @@ export class PlanetsService {
     const planetToUpdate = this.planets.find((planet) => planet.id === id);
 
     if (!planetToUpdate) {
-      throw new Error(`Planet with id #${id} not found`);
+      throw new Error(`Planet with id: ${id} not found`);
     }
 
     planetToUpdate.name = updatePlanetInput.name;
@@ -42,7 +42,7 @@ export class PlanetsService {
     const planetIndex = this.planets.findIndex((planet) => planet.id === id);
 
     if (planetIndex === -1) {
-      throw new Error(`Planet with id #${id} not found`);
+      throw new Error(`Planet with id: ${id} not found`);
     }
 
     return this.planets.splice(planetIndex, 1)[0];

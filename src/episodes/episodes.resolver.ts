@@ -18,7 +18,7 @@ export class EpisodesResolver {
   }
 
   @Query('episode')
-  findOne(@Args('id') id: string) {
+  findOneById(@Args('id') id: string) {
     return this.episodesService.findOneById(id);
   }
 

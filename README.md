@@ -34,8 +34,8 @@ App starts a local graphQl server on http://localhost:3000/graphql.
 Go to http://localhost:3000/graphql and run this query:
 
 ```
-query GetAllCharacters {
-  characters {
+query GetCharactersPaginated {
+  characters(getCharactersInput: { first: 20, after: 0  }) {
     name
     episodes {
       name

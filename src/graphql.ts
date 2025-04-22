@@ -17,6 +17,11 @@ export class UpdateCharacterInput {
     name: string;
 }
 
+export class GetCharactersInput {
+    first?: Nullable<number>;
+    after?: Nullable<number>;
+}
+
 export class CreateEpisodeInput {
     name: string;
 }
@@ -43,7 +48,7 @@ export class Character {
 }
 
 export abstract class IQuery {
-    abstract characters(): Nullable<Character>[] | Promise<Nullable<Character>[]>;
+    abstract characters(getCharactersInput?: Nullable<GetCharactersInput>): Nullable<Character>[] | Promise<Nullable<Character>[]>;
 
     abstract character(id: string): Nullable<Character> | Promise<Nullable<Character>>;
 

@@ -16,8 +16,13 @@ input UpdateCharacterInput {
     name: String!
 }
 
+input GetCharactersInput {
+    first: Int
+    after: Int
+}
+
 type Query {
-    characters: [Character]!
+    characters(getCharactersInput: GetCharactersInput): [Character]!
     character(id: ID!): Character
 }
 

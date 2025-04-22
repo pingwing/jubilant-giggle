@@ -36,6 +36,12 @@ describe('CharactersService', () => {
     expect(characters[0].name).toEqual('Luke Skywalker');
   });
 
+  it('should return characters with pagination', () => {
+    const characters = service.findAll({ after: 3, first: 2 });
+    expect(characters.length).toEqual(2);
+    expect(characters[0].name).toEqual('Leia Organa');
+  });
+
   it('should return a character by id', () => {
     const character = service.findOneById(existingCharacterIdToFind);
     expect(character).toEqual({ ...character, id: existingCharacterIdToFind });

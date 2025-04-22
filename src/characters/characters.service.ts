@@ -4,6 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { Character } from '../graphql';
 import { CreateCharacterInput } from './dto/create-character.input';
 import { UpdateCharacterInput } from './dto/update-character.input';
+import { GetCharactersInput } from './dto/get-characters.input';
 
 @Injectable()
 export class CharactersService {
@@ -88,7 +89,12 @@ export class CharactersService {
     return character;
   }
 
-  findAll() {
+  findAll(args?: GetCharactersInput) {
+    if (args) {
+      const sliceStart = args.after;
+      const sliceEnd = args.after + args.first;
+      return this.characters.slice(sliceStart, sliceEnd);
+    }
     return this.characters;
   }
 

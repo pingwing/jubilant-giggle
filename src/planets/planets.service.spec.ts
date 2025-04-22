@@ -4,7 +4,7 @@ import { Planet } from '../graphql';
 
 describe('PlanetsService', () => {
   let service: PlanetsService;
-  const planet: Planet = { name: 'Earth', id: 'non_relevant' };
+  const planetData: Planet = { name: 'Earth', id: 'non_relevant' };
   const existingPlanetIdToFind = '01964604-7f3b-72b4-884c-e8fc73e86c59';
 
   beforeEach(async () => {
@@ -20,9 +20,9 @@ describe('PlanetsService', () => {
   });
 
   it('should create a new planet', () => {
-    const newPlanet = service.create(planet);
-    expect(newPlanet.name).toEqual(planet.name);
-    expect(newPlanet).toEqual({ ...planet, id: newPlanet.id });
+    const newPlanet = service.create(planetData);
+    expect(newPlanet.name).toEqual(planetData.name);
+    expect(newPlanet).toEqual({ ...planetData, id: newPlanet.id });
   });
 
   it('should return all planets', () => {
@@ -39,5 +39,39 @@ describe('PlanetsService', () => {
   it('should return undefined if planet not found', () => {
     const planet = service.findOneById('2');
     expect(planet).toBeUndefined();
+  });
+
+  it('should update a planet', () => {
+    const planet = service.update(existingPlanetIdToFind, planetData);
+    expect(planet).toEqual({
+      ...planet,
+    });
+  });
+
+  it('should throw an error when planet to update not found', () => {
+    const failedUpdate = () => {
+      service.update('non-existent-planet', planetData);
+    };
+    expect(failedUpdate).toThrow();
+  });
+
+  it('should remove a planet', () => {
+    const planetsBefore = service.findAll();
+    expect(planetsBefore.length).toEqual(1);
+
+    const planet = service.remove(existingPlanetIdToFind);
+    expect(planet).toEqual({
+      ...planet,
+    });
+
+    const planetsAfter = service.findAll();
+    expect(planetsAfter.length).toEqual(0);
+  });
+
+  it('should throw an error when planet to remove not found', () => {
+    const failedRemove = () => {
+      service.remove('non-existent-planet');
+    };
+    expect(failedRemove).toThrow();
   });
 });

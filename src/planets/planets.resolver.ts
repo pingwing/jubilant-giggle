@@ -18,7 +18,7 @@ export class PlanetsResolver {
   }
 
   @Query('planet')
-  findOne(@Args('id') id: string) {
+  findOneById(@Args('id') id: string) {
     return this.planetsService.findOneById(id);
   }
 

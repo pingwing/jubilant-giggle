@@ -49,7 +49,7 @@ describe('PlanetsResolver', () => {
   });
 
   it('should return a planet by id', () => {
-    const planet = resolver.findOne(existingPlanetIdToFind);
+    const planet = resolver.findOneById(existingPlanetIdToFind);
     expect(planet).toEqual({ ...planet, id: existingPlanetIdToFind });
   });
 });

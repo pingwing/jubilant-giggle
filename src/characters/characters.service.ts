@@ -91,8 +91,14 @@ export class CharactersService {
     return this.characters;
   }
 
-  findOne(id: string) {
-    return this.characters.find((character) => character.id === id);
+  findOneById(id: string) {
+    const foundCharacter = this.characters.find(
+      (character) => character.id === id,
+    );
+    if (!foundCharacter) {
+      throw new Error(`Character with id #${id} not found`);
+    }
+    return foundCharacter;
   }
 
   update(id: string, updateCharacterInput: UpdateCharacterInput) {

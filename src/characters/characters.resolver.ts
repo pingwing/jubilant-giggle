@@ -20,8 +20,8 @@ export class CharactersResolver {
   }
 
   @Query('character')
-  findOne(@Args('id') id: string) {
-    return this.charactersService.findOne(id);
+  findOneById(@Args('id') id: string) {
+    return this.charactersService.findOneById(id);
   }
 
   @Mutation('updateCharacter')

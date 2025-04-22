@@ -49,7 +49,7 @@ describe('EpisodesResolver', () => {
   });
 
   it('should return an episode by id', () => {
-    const episode = resolver.findOne(existingEpisodeIdToFind);
+    const episode = resolver.findOneById(existingEpisodeIdToFind);
     expect(episode).toEqual({ ...episode, id: existingEpisodeIdToFind });
   });
 });

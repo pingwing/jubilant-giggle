@@ -21,7 +21,8 @@
     "test:smoke": "jest --config ./test-smoke/jest-smoke.json",
     "test:e2e:updateSnaphots": "npm run test:e2e -- -u",
     "test:load": "artillery run test-load/load-test.js",
-    "generateSchema": "ts-node scripts/generate-typings"
+    "generateSchema": "ts-node scripts/generate-typings",
+    "deploy": "mau deploy --entry-file dist/src/main"
   },
   "dependencies": {
     "@apollo/server": "^4.12.0",

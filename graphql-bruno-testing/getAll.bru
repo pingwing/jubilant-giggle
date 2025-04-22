@@ -1,0 +1,26 @@
+meta {
+  name: getAll
+  type: graphql
+  seq: 2
+}
+
+post {
+  url: http://main-graphql-alb-2125808656.eu-central-1.elb.amazonaws.com/graphql
+  body: graphql
+  auth: none
+}
+
+body:graphql {
+  query GetAllCharacters {
+      characters {
+        id
+        name
+        episodes {
+          name
+        }
+        planet {
+          name
+        }
+      }
+    }
+}

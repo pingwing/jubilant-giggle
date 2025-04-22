@@ -2,6 +2,15 @@
 
 Nest.js based backend for cataloging Star Wars characters. The backend is available through GraphQl.
 
+## App demo
+I deployed the app at:
+```http://main-graphql-alb-2125808656.eu-central-1.elb.amazonaws.com```
+
+The GraphQL endpoint is at:
+```http://main-graphql-alb-2125808656.eu-central-1.elb.amazonaws.com/graphql```
+
+You can test it using any GraphQL client. I added some example requests for Bruno (open source alternative to Postman, https://www.usebruno.com/).
+
 ## Running the app
 
 The app expects node version 22. I'm using v22.14.0. Check your node version using `node -v`.
@@ -176,7 +185,7 @@ removePlanet(id: ID!): Planet
 ```
 
 ## Running on production
-My recommended approach would be building the app (npm run build), packaging it as a docker image and running those docker images on Amazon   
+My recommended approach would be building the app (npm run build), packaging it as a docker image and running those docker images on Amazon ECS. I added smoke tests to verify the app is working.
 
 ## Author
 

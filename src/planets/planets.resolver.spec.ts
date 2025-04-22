@@ -22,6 +22,14 @@ describe('PlanetsResolver', () => {
             findOneById: jest
               .fn()
               .mockImplementation((id: number) => ({ ...planet, id })),
+            update: jest
+              .fn()
+              .mockImplementation((_id: string, planet: Planet) => {
+                return planet;
+              }),
+            remove: jest.fn().mockImplementation(() => {
+              return planet;
+            }),
           },
         },
       ],
@@ -51,5 +59,19 @@ describe('PlanetsResolver', () => {
   it('should return a planet by id', () => {
     const planet = resolver.findOneById(existingPlanetIdToFind);
     expect(planet).toEqual({ ...planet, id: existingPlanetIdToFind });
+  });
+
+  it('should update a planet', () => {
+    const episode = resolver.update(planet);
+    expect(episode).toEqual({
+      ...planet,
+    });
+  });
+
+  it('should remove a planet', () => {
+    const episode = resolver.remove(planet.id);
+    expect(episode).toEqual({
+      ...planet,
+    });
   });
 });

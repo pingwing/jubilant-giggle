@@ -97,7 +97,7 @@ export class CharactersService {
       (character) => character.id === id,
     );
     if (!foundCharacter) {
-      throw new Error(`Character with id #${id} not found`);
+      throw new Error(`Character with id: ${id} not found`);
     }
     return foundCharacter;
   }
@@ -108,7 +108,7 @@ export class CharactersService {
     );
 
     if (!characterToUpdate) {
-      throw new Error(`Character with id #${id} not found`);
+      throw new Error(`Character with id: ${id} not found`);
     }
 
     characterToUpdate.name = updateCharacterInput.name;
@@ -121,7 +121,7 @@ export class CharactersService {
     );
 
     if (characterIndex === -1) {
-      throw new Error(`Character with id #${id} not found`);
+      throw new Error(`Character with id: ${id} not found`);
     }
 
     return this.characters.splice(characterIndex, 1)[0];

@@ -33,7 +33,7 @@ export class EpisodesService {
     const episodeToUpdate = this.episodes.find((episode) => episode.id === id);
 
     if (!episodeToUpdate) {
-      throw new Error(`Episode with id #${id} not found`);
+      throw new Error(`Episode with id: ${id} not found`);
     }
 
     episodeToUpdate.name = updateEpisodeInput.name;
@@ -46,7 +46,7 @@ export class EpisodesService {
     );
 
     if (episodeIndex === -1) {
-      throw new Error(`Episode with id #${id} not found`);
+      throw new Error(`Episode with id: ${id} not found`);
     }
 
     return this.episodes.splice(episodeIndex, 1)[0];

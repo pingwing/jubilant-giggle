@@ -2,7 +2,7 @@ FROM node:22.14-alpine
 
 WORKDIR /app
 
-COPY dist/main.js main.js
+COPY dist/src/main.js main.js
 
 ENV PORT=3000
 EXPOSE 3000

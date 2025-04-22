@@ -7,9 +7,6 @@
   "license": "MIT",
   "scripts": {
     "build": "nest build",
-    "build:withgql": "rm -rf dist && npm run build && copyfiles *.graphql dist/",
-    "copy:gql": "copyfiles *.graphql dist/",
-    "bundle": "esbuild ./dist/src/main.js --bundle --outfile=./dist/bundle.js --platform=node",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "ENVIRONMENT=LOCAL nest start --watch",

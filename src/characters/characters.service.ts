@@ -12,7 +12,37 @@ export class CharactersService {
   > = [
     {
       id: '019645d4-8273-7758-92d7-f20f20d723be',
-      name: 'Luke Skajłoker',
+      name: 'Luke Skywalker',
+      episodesIds: [
+        '019645e2-eb79-77fb-aa90-45713d40d289',
+        '019645e2-eb79-77fb-aa90-4a35b46ae7e2',
+        '019645e2-eb79-77fb-aa90-4c47432a6c01',
+      ],
+      episodes: [],
+    },
+    {
+      id: '01965aac-6388-765c-b3c9-ed694de57013',
+      name: 'Darth Vader',
+      episodesIds: [
+        '019645e2-eb79-77fb-aa90-45713d40d289',
+        '019645e2-eb79-77fb-aa90-4a35b46ae7e2',
+        '019645e2-eb79-77fb-aa90-4c47432a6c01',
+      ],
+      episodes: [],
+    },
+    {
+      id: '01965aac-6389-7102-aaa1-8da5708abfff',
+      name: 'Han Solo',
+      episodesIds: [
+        '019645e2-eb79-77fb-aa90-45713d40d289',
+        '019645e2-eb79-77fb-aa90-4a35b46ae7e2',
+        '019645e2-eb79-77fb-aa90-4c47432a6c01',
+      ],
+      episodes: [],
+    },
+    {
+      id: '01965aac-6389-7102-aaa1-90d5f5ef1320',
+      name: 'Leia Organa',
       episodesIds: [
         '019645e2-eb79-77fb-aa90-45713d40d289',
         '019645e2-eb79-77fb-aa90-4a35b46ae7e2',
@@ -20,6 +50,32 @@ export class CharactersService {
       ],
       episodes: [],
       planetId: '01964604-7f3b-72b4-884c-e8fc73e86c59',
+    },
+    {
+      id: '01965aac-6389-7102-aaa1-953cf11d64af',
+      name: 'Wilhuff Tarkin',
+      episodesIds: ['019645e2-eb79-77fb-aa90-45713d40d289'],
+      episodes: [],
+    },
+    {
+      id: '01965aac-6389-7102-aaa1-9b9a12cc675c',
+      name: 'C-3PO',
+      episodesIds: [
+        '019645e2-eb79-77fb-aa90-45713d40d289',
+        '019645e2-eb79-77fb-aa90-4a35b46ae7e2',
+        '019645e2-eb79-77fb-aa90-4c47432a6c01',
+      ],
+      episodes: [],
+    },
+    {
+      id: '01965aac-6389-7102-aaa1-9c6272e2577d',
+      name: 'R2-D2',
+      episodesIds: [
+        '019645e2-eb79-77fb-aa90-45713d40d289',
+        '019645e2-eb79-77fb-aa90-4a35b46ae7e2',
+        '019645e2-eb79-77fb-aa90-4c47432a6c01',
+      ],
+      episodes: [],
     },
   ];
 

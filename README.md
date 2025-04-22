@@ -4,12 +4,12 @@ Nest.js based backend for cataloging Star Wars characters. The backend is availa
 
 ## Running the app
 
-The app expects node version 20. I'm using v20.19.0. Check your node version using `node -v`.
+The app expects node version 22. I'm using v22.14.0. Check your node version using `node -v`.
 
 Start the setup by installing packages in the main app directory:
 
 ```
-npm
+npm install
 ```
 
 Then run the project using:
@@ -174,6 +174,9 @@ createPlanet(createPlanetInput: CreatePlanetInput!): Planet!
 updatePlanet(updatePlanetInput: UpdatePlanetInput!): Planet!
 removePlanet(id: ID!): Planet
 ```
+
+## Running on production
+My recommended approach would be building the app (npm run build), packaging it as a docker image and running those docker images on Amazon   
 
 ## Author
 

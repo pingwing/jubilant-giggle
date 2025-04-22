@@ -42,7 +42,7 @@ describe('AppController (e2e)', () => {
       .expect(200);
     const responseBody1 = response1.body as GraphqlResponse;
     expect(responseBody1?.errors).toBeUndefined();
-    expect(responseBody1?.data?.characters).toHaveLength(1);
+    expect(responseBody1?.data?.characters).toHaveLength(7);
 
     // STEP 2: add a new character
     const response2 = await request(server)
@@ -63,7 +63,7 @@ describe('AppController (e2e)', () => {
       .expect(200);
     const responseBody3 = response3.body as GraphqlResponse;
     expect(responseBody3?.errors).toBeUndefined();
-    expect(responseBody3?.data?.characters).toHaveLength(2);
+    expect(responseBody3?.data?.characters).toHaveLength(8);
 
     // STEP 4: update name of newly created character
     const newCharacterName = 'Jens Maul';
@@ -84,9 +84,9 @@ describe('AppController (e2e)', () => {
       .expect(200);
     const responseBody5 = response5.body as GraphqlResponse;
     expect(responseBody5?.errors).toBeUndefined();
-    expect(responseBody5?.data?.characters).toHaveLength(2);
+    expect(responseBody5?.data?.characters).toHaveLength(8);
     expect(
-      (responseBody5?.data?.characters as { name: string }[])[1].name,
+      (responseBody5?.data?.characters as { name: string }[])[7].name,
     ).toEqual(newCharacterName);
   });
 });

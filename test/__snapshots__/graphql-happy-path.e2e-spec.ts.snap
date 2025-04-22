@@ -15,10 +15,100 @@ exports[`AppController (e2e) should get all characters 1`] = `
       },
     ],
     "id": "019645d4-8273-7758-92d7-f20f20d723be",
-    "name": "Luke Skajłoker",
+    "name": "Luke Skywalker",
+    "planet": null,
+  },
+  {
+    "episodes": [
+      {
+        "name": "NEWHOPE",
+      },
+      {
+        "name": "EMPIRE",
+      },
+      {
+        "name": "JEDI",
+      },
+    ],
+    "id": "01965aac-6388-765c-b3c9-ed694de57013",
+    "name": "Darth Vader",
+    "planet": null,
+  },
+  {
+    "episodes": [
+      {
+        "name": "NEWHOPE",
+      },
+      {
+        "name": "EMPIRE",
+      },
+      {
+        "name": "JEDI",
+      },
+    ],
+    "id": "01965aac-6389-7102-aaa1-8da5708abfff",
+    "name": "Han Solo",
+    "planet": null,
+  },
+  {
+    "episodes": [
+      {
+        "name": "NEWHOPE",
+      },
+      {
+        "name": "EMPIRE",
+      },
+      {
+        "name": "JEDI",
+      },
+    ],
+    "id": "01965aac-6389-7102-aaa1-90d5f5ef1320",
+    "name": "Leia Organa",
     "planet": {
       "name": "Alderaan",
     },
+  },
+  {
+    "episodes": [
+      {
+        "name": "NEWHOPE",
+      },
+    ],
+    "id": "01965aac-6389-7102-aaa1-953cf11d64af",
+    "name": "Wilhuff Tarkin",
+    "planet": null,
+  },
+  {
+    "episodes": [
+      {
+        "name": "NEWHOPE",
+      },
+      {
+        "name": "EMPIRE",
+      },
+      {
+        "name": "JEDI",
+      },
+    ],
+    "id": "01965aac-6389-7102-aaa1-9b9a12cc675c",
+    "name": "C-3PO",
+    "planet": null,
+  },
+  {
+    "episodes": [
+      {
+        "name": "NEWHOPE",
+      },
+      {
+        "name": "EMPIRE",
+      },
+      {
+        "name": "JEDI",
+      },
+    ],
+    "id": "01965aac-6389-7102-aaa1-9c6272e2577d",
+    "name": "R2-D2",
+    "planet": null,
   },
 ]
 `;

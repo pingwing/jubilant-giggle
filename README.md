@@ -185,7 +185,7 @@ removePlanet(id: ID!): Planet
 ```
 
 ## Running on production
-My recommended approach would be building the app (npm run build), packaging it as a docker image and running those docker images on Amazon ECS. I added smoke tests to verify the app is working.
+My recommended approach would be building the app (npm run build), packaging it as a docker image and running the docker image on Amazon ECS. I added smoke tests to verify the app is working.
 
 ## Author
 

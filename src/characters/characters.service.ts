@@ -5,9 +5,16 @@ import { Character } from '../graphql';
 import { CreateCharacterInput } from './dto/create-character.input';
 import { UpdateCharacterInput } from './dto/update-character.input';
 import { GetCharactersInput } from './dto/get-characters.input';
+import { EpisodesService } from '../episodes/episodes.service';
+import { PlanetsService } from '../planets/planets.service';
 
 @Injectable()
 export class CharactersService {
+  constructor(
+    private readonly episodesService: EpisodesService,
+    private readonly planetsService: PlanetsService,
+  ) {}
+
   private readonly characters: Array<
     Character & { episodesIds?: string[]; planetId?: string }
   > = [
@@ -115,6 +122,33 @@ export class CharactersService {
 
     if (!characterToUpdate) {
       throw new Error(`Character with id: ${id} not found`);
+    }
+    if (updateCharacterInput.episodesIds) {
+      const idsAreCorrect = updateCharacterInput.episodesIds.every(
+        (episodeId) => {
+          return this.episodesService.findOneById(episodeId);
+        },
+      );
+      if (!idsAreCorrect) {
+        throw new Error(
+          `Cannot update character with id: ${id}. One of passed episodes ids is not valid.`,
+        );
+      }
+
+      characterToUpdate.episodesIds = updateCharacterInput.episodesIds;
+    }
+
+    if (updateCharacterInput.planetId) {
+      const idIsCorrect = this.planetsService.findOneById(
+        updateCharacterInput.planetId,
+      );
+      if (!idIsCorrect) {
+        throw new Error(
+          `Cannot update character with id: ${id}. Passed planedId is not valid.`,
+        );
+      }
+
+      characterToUpdate.planetId = updateCharacterInput.planetId;
     }
 
     characterToUpdate.name = updateCharacterInput.name;

@@ -41,6 +41,7 @@ export class EpisodesService {
   }
 
   remove(id: string) {
+    // it is still missing the logic to remove the episode from characters
     const episodeIndex = this.episodes.findIndex(
       (episode) => episode.id === id,
     );

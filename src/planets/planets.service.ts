@@ -39,6 +39,7 @@ export class PlanetsService {
   }
 
   remove(id: string) {
+    // it is still missing the logic to remove the planet from characters
     const planetIndex = this.planets.findIndex((planet) => planet.id === id);
 
     if (planetIndex === -1) {

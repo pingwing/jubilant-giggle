@@ -15,6 +15,8 @@ export class CreateCharacterInput {
 export class UpdateCharacterInput {
     id: string;
     name: string;
+    episodesIds?: Nullable<Nullable<string>[]>;
+    planetId?: Nullable<string>;
 }
 
 export class GetCharactersInput {
